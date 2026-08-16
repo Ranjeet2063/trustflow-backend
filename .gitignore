@@ -33,7 +33,6 @@ yarn-error.log*
 
 # local env files
 .env*.local
-.env
 
 # vercel
 .vercel
@@ -64,3 +63,4 @@ NEXT_STEPS_CHECKLIST.md
 PR_DESCRIPTION.md
 
 # Local scripts output
+config.bat
