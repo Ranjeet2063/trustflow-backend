@@ -25,11 +25,12 @@ export const ReleaseEscrowSchema = z.object({
 
 export type ReleaseEscrowDto = z.infer<typeof ReleaseEscrowSchema>;
 
+// The request body carries only the dispute details. The escrow comes from the `:id` path
+// parameter and the initiator from the authenticated JWT, so neither belongs in the body (#800).
 export const RaiseDisputeSchema = z.object({
-  escrowId: z.string().min(1),
-  reason: z.string().min(10).max(500),
+  // Optional: callers may omit it, and the controllers then record 'No reason provided'.
+  reason: z.string().min(10).max(500).optional(),
   evidenceUrl: z.string().url().optional(),
-  signerAddress: z.string().regex(STELLAR_ADDRESS_REGEX),
 });
 
 export type RaiseDisputeDto = z.infer<typeof RaiseDisputeSchema>;
